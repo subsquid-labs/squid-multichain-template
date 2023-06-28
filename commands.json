@@ -49,10 +49,21 @@
         "deps": ["build", "migration:apply"],
         "cmd": ["node", "--require=dotenv/config", "lib/main-eth.js"]
       },
+      "process-bsc": {
+        "description": "Load .env and start the BSC squid processor",
+        "deps": ["build", "migration:apply"],
+        "cmd": ["node", "--require=dotenv/config", "lib/main-bsc.js"]
+      },
       "process-eth:prod": {
         "description": "Start the squid processor",
         "deps": ["migration:apply"],
         "cmd": ["node", "lib/main-eth.js"],
+        "hidden": true
+      },
+      "process-bsc:prod": {
+        "description": "Start the squid processor",
+        "deps": ["migration:apply"],
+        "cmd": ["node", "lib/main-bsc.js"],
         "hidden": true
       },
       "serve": {
