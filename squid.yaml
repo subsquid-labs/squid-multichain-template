@@ -1,15 +1,16 @@
 manifestVersion: subsquid.io/v0.1
 name: multichain-transfers-squid
 version: 1
-description: 'The very first evm squid from manifest  '
+description: 'A squid that indexes USDC transfers on ETH and BSC'
 build: 
 deploy:
   addons:
     postgres: 
   processor:
-    cmd:
-      - node
-      - lib/main
+    - name: eth-processor
+      cmd: [ "node", "lib/main-eth" ]
+    - name: bsc-processor
+      cmd: [ "node", "lib/main-bsc" ]
   api:
     cmd:
       - npx
