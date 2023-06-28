@@ -21,8 +21,8 @@ npm ci
 sqd up
 
 # 4. Build and start the processors
-sqd process-eth # then in a separate terminal
-sqd process-bsc
+sqd process:eth # then in a separate terminal
+sqd process:bsc
 
 # 5. Start the GraphQL server by running in yet another terminal
 sqd serve
