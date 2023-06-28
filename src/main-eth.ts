@@ -3,7 +3,7 @@ import {Transfer} from './model'
 import {processor, ETH_USDC_ADDRESS} from './processor-eth'
 import * as erc20abi from './abi/erc20'
 
-processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_processor'}), async (ctx) => {
+processor.run(new TypeormDatabase({supportHotBlocks: true, stateSchema: 'eth_processor'}), async (ctx) => {
     const transfers: Transfer[] = []
     for (let c of ctx.blocks) {
         for (let log of c.logs) {
