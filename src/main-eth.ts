@@ -1,6 +1,6 @@
 import {TypeormDatabase} from '@subsquid/typeorm-store'
 import {Transfer} from './model'
-import {processor, ETH_USDC_ADDRESS} from './processor'
+import {processor, ETH_USDC_ADDRESS} from './processor-eth'
 import * as erc20abi from './abi/erc20'
 
 processor.run(new TypeormDatabase({supportHotBlocks: false}), async (ctx) => {
