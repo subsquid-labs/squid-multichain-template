@@ -2,10 +2,13 @@ manifestVersion: subsquid.io/v0.1
 name: multichain-transfers-squid
 version: 1
 description: 'A squid that indexes USDC transfers on ETH and BSC'
-build: 
+build:
 deploy:
   addons:
-    postgres: 
+    postgres:
+    rpc:
+      - eth:http
+      - bsc:http
   processor:
     - name: eth-processor
       cmd: [ "node", "lib/eth/main" ]
@@ -23,3 +26,7 @@ deploy:
       - '100'
       - '--dumb-cache-max-age'
       - '1000'
+scale:
+  addons:
+    rpc:
+      max-rate: 10rps
