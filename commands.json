@@ -25,11 +25,11 @@
       "migration:generate": {
         "description": "Generate a DB migration matching the TypeORM entities",
         "deps": ["build", "migration:clean"],
-        "cmd": ["squid-typeorm-migration", "generate"],
+        "cmd": ["squid-typeorm-migration", "generate"]
       },
       "migration:clean": {
         "description": "Clean the migrations folder",
-        "cmd": ["npx", "--yes", "rimraf", "./db/migrations"],
+        "cmd": ["npx", "--yes", "rimraf", "./db/migrations"]
       },
       "migration": {
         "deps": ["build"],
@@ -44,26 +44,26 @@
         "description": "Generate data access classes for an ABI file(s) in the ./abi folder",
         "cmd": ["squid-evm-typegen", "./src/abi", {"glob": "./abi/*.json"}, "--multicall"]
       },
-      "process-eth": {
+      "process:eth": {
         "description": "Load .env and start the ETH squid processor",
         "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/main-eth.js"]
+        "cmd": ["node", "--require=dotenv/config", "lib/eth/main.js"]
       },
-      "process-bsc": {
+      "process:bsc": {
         "description": "Load .env and start the BSC squid processor",
         "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/main-bsc.js"]
+        "cmd": ["node", "--require=dotenv/config", "lib/bsc/main.js"]
       },
-      "process-eth:prod": {
+      "process:prod:eth": {
         "description": "Start the squid processor",
         "deps": ["migration:apply"],
-        "cmd": ["node", "lib/main-eth.js"],
+        "cmd": ["node", "lib/eth/main.js"],
         "hidden": true
       },
-      "process-bsc:prod": {
+      "process:prod:bsc": {
         "description": "Start the squid processor",
         "deps": ["migration:apply"],
-        "cmd": ["node", "lib/main-bsc.js"],
+        "cmd": ["node", "lib/bsc/main.js"],
         "hidden": true
       },
       "serve": {
