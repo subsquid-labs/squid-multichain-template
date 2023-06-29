@@ -9,6 +9,7 @@ import {
 } from '@subsquid/evm-processor'
 import {Store} from '@subsquid/typeorm-store'
 import * as erc20abi from '../abi/erc20'
+import {assertNotNull} from '@subsquid/util-internal'
 
 export const ETH_USDC_ADDRESS = '0x7EA2be2df7BA6E54B1A9C70676f668455E329d29'.toLowerCase()
 
@@ -16,7 +17,7 @@ export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: lookupArchive('eth-mainnet'),
         chain: {
-            url: process.env.RPC_ETH_HTTP,
+            url: assertNotNull(process.env.RPC_ETH_HTTP),
             rateLimit: 10
         }
     })

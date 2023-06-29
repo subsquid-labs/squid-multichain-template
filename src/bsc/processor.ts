@@ -9,6 +9,7 @@ import {
 } from '@subsquid/evm-processor'
 import {Store} from '@subsquid/typeorm-store'
 import * as erc20abi from '../abi/erc20'
+import {assertNotNull} from '@subsquid/util-internal'
 
 export const BSC_USDC_ADDRESS = '0x8965349fb649A33a30cbFDa057D8eC2C48AbE2A2'.toLowerCase()
 
@@ -16,7 +17,7 @@ export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: lookupArchive('binance'),
         chain: {
-            url: process.env.RPC_BSC_HTTP,
+            url: assertNotNull(process.env.RPC_BSC_HTTP),
             rateLimit: 10
         }
     })
