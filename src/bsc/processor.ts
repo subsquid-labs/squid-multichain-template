@@ -15,7 +15,10 @@ export const BSC_USDC_ADDRESS = '0x8965349fb649A33a30cbFDa057D8eC2C48AbE2A2'.toL
 export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: lookupArchive('binance'),
-        chain: process.env.RPC_BSC_HTTP
+        chain: {
+            url: process.env.RPC_BSC_HTTP,
+            rateLimit: 10
+        }
     })
     .setFinalityConfirmation(75)
     .setFields({
