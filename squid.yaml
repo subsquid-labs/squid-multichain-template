@@ -8,9 +8,9 @@ deploy:
     postgres: 
   processor:
     - name: eth-processor
-      cmd: [ "node", "lib/main-eth" ]
+      cmd: [ "node", "lib/eth/main" ]
     - name: bsc-processor
-      cmd: [ "node", "lib/main-bsc" ]
+      cmd: [ "node", "lib/bsc/main" ]
   api:
     cmd:
       - npx
