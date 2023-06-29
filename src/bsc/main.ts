@@ -1,7 +1,7 @@
 import {TypeormDatabase} from '@subsquid/typeorm-store'
-import {Transfer} from './model'
-import {processor, BSC_USDC_ADDRESS} from './processor-bsc'
-import * as erc20abi from './abi/erc20'
+import {Transfer} from '../model'
+import * as erc20abi from '../abi/erc20'
+import {processor, BSC_USDC_ADDRESS} from './processor'
 
 processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'bsc_processor'}), async (ctx) => {
     const transfers: Transfer[] = []

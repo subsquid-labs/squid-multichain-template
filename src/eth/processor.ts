@@ -8,7 +8,7 @@ import {
     Transaction as _Transaction,
 } from '@subsquid/evm-processor'
 import {Store} from '@subsquid/typeorm-store'
-import * as erc20abi from './abi/erc20'
+import * as erc20abi from '../abi/erc20'
 
 export const ETH_USDC_ADDRESS = '0x7EA2be2df7BA6E54B1A9C70676f668455E329d29'.toLowerCase()
 
