@@ -15,7 +15,10 @@ export const ETH_USDC_ADDRESS = '0x7EA2be2df7BA6E54B1A9C70676f668455E329d29'.toL
 export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: lookupArchive('eth-mainnet'),
-        chain: process.env.RPC_ETH_HTTP
+        chain: {
+            url: process.env.RPC_ETH_HTTP,
+            rateLimit: 10
+        }
     })
     .setFinalityConfirmation(75)
     .setFields({
