@@ -2,7 +2,11 @@
 
 This [squid](https://docs.subsquid.io/) captures USDC Transfer events on ETH and BSC, stores them in the same database and serves the data over a common GraphQL API.
 
+The Ethereum processor is located in `src/eth` and similarly the Binance Chain processor can be found in `src/bsc`. The scripts file `commands.json` was updated with the commands `process:eth` and `process:bsc` to run the processors. 
+
 Dependencies: Node.js, Docker, Git.
+
+
 
 ## Quickstart
 
