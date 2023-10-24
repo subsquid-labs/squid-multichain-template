@@ -4,9 +4,9 @@ This [squid](https://docs.subsquid.io/) captures USDC Transfer events on ETH and
 
 The Ethereum processor is located in `src/eth` and similarly the Binance Chain processor can be found in `src/bsc`. The scripts file `commands.json` was updated with the commands `process:eth` and `process:bsc` to run the processors. 
 
+You can find some useful hints on developing multichain squids on the [dedicated documentation page](https://docs.subsquid.io/basics/multichain/).
+
 Dependencies: Node.js, Docker, Git.
-
-
 
 ## Quickstart
 
@@ -24,11 +24,20 @@ npm ci
 # 3. Start a Postgres database container and detach
 sqd up
 
-# 4. Build and start the processors
-sqd process:eth # then in a separate terminal
-sqd process:bsc
+# 4. Apply the migration
+sqd migration:apply
 
-# 5. Start the GraphQL server by running in yet another terminal
-sqd serve
+# 5. Build the squid
+sqd build
+
+# 6. Run all services at once
+sqd run .
 ```
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
+
+You can also run individual services separately:
+```bash
+sqd process:eth # Ethereum processor
+sqd process:bsc # BSC processor
+sqd serve       # GraphQL server
+```
