@@ -1,3 +1,4 @@
+import {assertNotNull} from '@subsquid/util-internal'
 import {lookupArchive} from '@subsquid/archive-registry'
 import {
     BlockHeader,
@@ -14,10 +15,21 @@ export const ETH_USDC_ADDRESS = '0x7EA2be2df7BA6E54B1A9C70676f668455E329d29'.toL
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
+        // Lookup archive by the network name in Subsquid registry
+        // See https://docs.subsquid.io/evm-indexing/supported-networks/
         archive: lookupArchive('eth-mainnet'),
-//        chain: 'https://rpc.ankr.com/eth',
+        // Chain RPC endpoint is required for
+        //  - indexing unfinalized blocks https://docs.subsquid.io/basics/unfinalized-blocks/
+        //  - querying the contract state https://docs.subsquid.io/evm-indexing/query-state/
+        chain: {
+            // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
+            // https://docs.subsquid.io/deploy-squid/env-variables/
+            url: assertNotNull(process.env.ETH_RPC_ENDPOINT),
+            // More RPC connection options at https://docs.subsquid.io/evm-indexing/configuration/initialization/#set-data-source
+            rateLimit: 10
+        }
     })
-//    .setFinalityConfirmation(75)
+    .setFinalityConfirmation(75)
     .setFields({
         log: {
             transactionHash: true
