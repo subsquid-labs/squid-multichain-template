@@ -15,4 +15,4 @@ deploy:
     - name: bsc-processor
       cmd: [ "sqd", "process:prod:bsc" ]
   api:
-    cmd: [ "sqd", "serve" ]
+    cmd: [ "sqd", "serve:prod" ]
