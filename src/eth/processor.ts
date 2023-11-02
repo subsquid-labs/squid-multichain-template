@@ -24,7 +24,7 @@ export const processor = new EvmBatchProcessor()
         chain: {
             // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
             // https://docs.subsquid.io/deploy-squid/env-variables/
-            url: assertNotNull(process.env.RPC_ETH_HTTP),
+            url: assertNotNull(process.env.RPC_ENDPOINT_ETH),
             // More RPC connection options at https://docs.subsquid.io/evm-indexing/configuration/initialization/#set-data-source
             rateLimit: 10
         }

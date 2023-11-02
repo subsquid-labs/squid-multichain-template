@@ -4,22 +4,15 @@ version: 1
 description: 'A squid that indexes USDC transfers on ETH and BSC'
 build: 
 deploy:
+  secrets:
+    - RPC_ENDPOINT_ETH
+    - RPC_ENDPOINT_BSC
   addons:
     postgres: 
   processor:
     - name: eth-processor
-      cmd: [ "node", "lib/eth/main" ]
+      cmd: [ "sqd", "process:prod:eth" ]
     - name: bsc-processor
-      cmd: [ "node", "lib/bsc/main" ]
+      cmd: [ "sqd", "process:prod:bsc" ]
   api:
-    cmd:
-      - npx
-      - squid-graphql-server
-      - '--dumb-cache'
-      - in-memory
-      - '--dumb-cache-ttl'
-      - '1000'
-      - '--dumb-cache-size'
-      - '100'
-      - '--dumb-cache-max-age'
-      - '1000'
+    cmd: [ "sqd", "serve" ]
