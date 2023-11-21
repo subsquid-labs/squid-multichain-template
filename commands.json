@@ -56,6 +56,7 @@
       },
       "process:prod:eth": {
         "description": "Start the squid processor",
+        "deps": ["migration:apply"],
         "cmd": ["node", "lib/eth/main.js"],
         "hidden": true
       },
