@@ -4,15 +4,16 @@ version: 1
 description: 'A squid that indexes USDC transfers on ETH and BSC'
 build: 
 deploy:
-  secrets:
-    - RPC_ENDPOINT_ETH
-    - RPC_ENDPOINT_BSC
   addons:
     postgres: 
   processor:
     - name: eth-processor
       cmd: [ "sqd", "process:prod:eth" ]
+      env:
+        RPC_ENDPOINT_ETH: ${{ secrets.RPC_ENDPOINT_ETH }}
     - name: bsc-processor
       cmd: [ "sqd", "process:prod:bsc" ]
+      env:
+        RPC_ENDPOINT_ETH: ${{ secrets.RPC_ENDPOINT_BSC }}
   api:
     cmd: [ "sqd", "serve:prod" ]
