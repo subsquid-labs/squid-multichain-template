@@ -14,20 +14,18 @@ import * as erc20abi from '../abi/erc20'
 export const BSC_USDC_ADDRESS = '0x8965349fb649A33a30cbFDa057D8eC2C48AbE2A2'.toLowerCase()
 
 export const processor = new EvmBatchProcessor()
-    .setDataSource({
-        // Lookup archive by the network name in Subsquid registry
-        // See https://docs.subsquid.io/evm-indexing/supported-networks/
-        archive: lookupArchive('binance'),
-        // Chain RPC endpoint is required for
-        //  - indexing unfinalized blocks https://docs.subsquid.io/basics/unfinalized-blocks/
-        //  - querying the contract state https://docs.subsquid.io/evm-indexing/query-state/
-        chain: {
-            // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
-            // https://docs.subsquid.io/deploy-squid/env-variables/
-            url: assertNotNull(process.env.RPC_ENDPOINT_BSC),
-            // More RPC connection options at https://docs.subsquid.io/evm-indexing/configuration/initialization/#set-data-source
-            rateLimit: 10
-        }
+    // Lookup archive by the network name in Subsquid registry
+    // See https://docs.subsquid.io/evm-indexing/supported-networks/
+    .setGateway(lookupArchive('binance'))
+    // Chain RPC endpoint is required for
+    //  - indexing unfinalized blocks https://docs.subsquid.io/basics/unfinalized-blocks/
+    //  - querying the contract state https://docs.subsquid.io/evm-indexing/query-state/
+    .setRpcEndpoint({
+        // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
+        // https://docs.subsquid.io/deploy-squid/env-variables/
+        url: assertNotNull(process.env.RPC_ENDPOINT_BSC),
+        // More RPC connection options at https://docs.subsquid.io/evm-indexing/configuration/initialization/#set-data-source
+        rateLimit: 10
     })
     .setFinalityConfirmation(75)
     .setFields({
