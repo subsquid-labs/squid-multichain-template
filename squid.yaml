@@ -14,6 +14,6 @@ deploy:
     - name: bsc-processor
       cmd: [ "sqd", "process:prod:bsc" ]
       env:
-        RPC_ENDPOINT_ETH: ${{ secrets.RPC_ENDPOINT_BSC }}
+        RPC_ENDPOINT_BSC: ${{ secrets.RPC_ENDPOINT_BSC }}
   api:
     cmd: [ "sqd", "serve:prod" ]
