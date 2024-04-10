@@ -1,5 +1,4 @@
 import {assertNotNull} from '@subsquid/util-internal'
-import {lookupArchive} from '@subsquid/archive-registry'
 import {
     BlockHeader,
     DataHandlerContext,
@@ -16,7 +15,7 @@ export const BSC_USDC_ADDRESS = '0x8965349fb649A33a30cbFDa057D8eC2C48AbE2A2'.toL
 export const processor = new EvmBatchProcessor()
     // Lookup archive by the network name in Subsquid registry
     // See https://docs.subsquid.io/evm-indexing/supported-networks/
-    .setGateway(lookupArchive('binance'))
+    .setGateway('https://v2.archive.subsquid.io/network/binance-mainnet')
     // Chain RPC endpoint is required for
     //  - indexing unfinalized blocks https://docs.subsquid.io/basics/unfinalized-blocks/
     //  - querying the contract state https://docs.subsquid.io/evm-indexing/query-state/
