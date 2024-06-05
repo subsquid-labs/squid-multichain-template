@@ -5,15 +5,14 @@ description: 'A squid that indexes USDC transfers on ETH and BSC'
 build: 
 deploy:
   addons:
-    postgres: 
+    postgres:
+    rpc:
+      - eth.http # RPC proxy URL will be supplied via the RPC_ETH_HTTP env variable
+      - bsc.http # via RPC_BSC_HTTP here
   processor:
     - name: eth-processor
       cmd: [ "sqd", "process:prod:eth" ]
-      env:
-        RPC_ENDPOINT_ETH: ${{ secrets.RPC_ENDPOINT_ETH }}
     - name: bsc-processor
       cmd: [ "sqd", "process:prod:bsc" ]
-      env:
-        RPC_ENDPOINT_BSC: ${{ secrets.RPC_ENDPOINT_BSC }}
   api:
     cmd: [ "sqd", "serve:prod" ]
