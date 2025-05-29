@@ -47,22 +47,22 @@
       "process:eth": {
         "description": "Load .env and start the ETH squid processor",
         "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/eth/main.js"]
+        "cmd": ["node", "--require=dotenv/config", "lib/main.js", "eth"]
       },
       "process:bsc": {
         "description": "Load .env and start the BSC squid processor",
         "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/bsc/main.js"]
+        "cmd": ["node", "--require=dotenv/config", "lib/main.js", "bsc"]
       },
       "process:prod:eth": {
         "description": "Start the squid processor",
         "deps": ["migration:apply"],
-        "cmd": ["node", "lib/eth/main.js"],
+        "cmd": ["node", "lib/main.js", "eth"],
         "hidden": true
       },
       "process:prod:bsc": {
         "description": "Start the squid processor",
-        "cmd": ["node", "lib/bsc/main.js"],
+        "cmd": ["node", "lib/main.js", "bsc"],
         "hidden": true
       },
       "serve": {
