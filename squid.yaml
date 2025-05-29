@@ -11,8 +11,8 @@ deploy:
       - bsc.http # via RPC_BSC_HTTP here
   processor:
     - name: eth-processor
-      cmd: [ "sqd", "process", "prod", "eth" ]
+      cmd: [ "sqd", "process:prod:eth" ]
     - name: bsc-processor
-      cmd: [ "sqd", "process", "prod", "bsc" ]
+      cmd: [ "sqd", "process:prod:bsc" ]
   api:
-    cmd: [ "sqd", "serve", "prod" ]
+    cmd: [ "sqd", "serve:prod" ]
