@@ -6,9 +6,6 @@ build:
 deploy:
   addons:
     postgres:
-    rpc:
-      - eth.http # RPC proxy URL will be supplied via the RPC_ETH_HTTP env variable
-      - bsc.http # via RPC_BSC_HTTP here
   processor:
     - name: eth-processor
       cmd: [ "sqd", "process:prod:eth" ]

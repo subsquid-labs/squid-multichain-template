@@ -2,11 +2,13 @@
 
 This [squid](https://docs.sqd.dev) captures USDC Transfer events on ETH and BSC, stores them in the same database and serves the data over a common GraphQL API.
 
-The main processor executable `src/main.ts` takes a string network ID (`eth` or `bsc`) as its sole argument and configures itself to index USDC on either Ethereum or Binance. Network-specific params are set in `src/networksConfigs.ts`.
+Each network is indexed by its own processor that streams pre-filtered data from a public [SQD Network Portal](https://docs.sqd.dev/en/sdk/squid-sdk/evm/reference/evm-stream) dataset — no API key or RPC endpoint is required, and it covers real-time unfinalized blocks. Both processors write to the same database using isolated `stateSchema`s (`eth_processor`, `bsc_processor`) so their sync state never collides.
 
-The scripts file `commands.json` contains separate commands `process:eth`, `process:prod:eth`, `process:bsc` and `process:prod:bsc` that run the main executable with different args. The [manifest](https://docs.sqd.dev) `squid.yaml` that describes squid services for [SQD Cloud](https://docs.sqd.dev) and the `sqd run` command uses these commands under the hood.
+The main processor executable `src/main.ts` takes a string network ID (`eth` or `bsc`) as its sole argument and configures itself to index USDC on either Ethereum or Binance. Network-specific params — including the per-network Portal dataset — are set in `src/networksConfigs.ts`, and the `DataSourceBuilder` is assembled in `src/processor.ts`.
 
-More info on developing multichain squids is available on the [dedicated documentation page](https://docs.sqd.dev).
+The scripts file `commands.json` contains separate commands `process:eth`, `process:prod:eth`, `process:bsc` and `process:prod:bsc` that run the main executable with different args. The [manifest](https://docs.sqd.dev/en/cloud/reference/manifest) `squid.yaml` that describes squid services for [SQD Cloud](https://docs.sqd.dev/en/cloud) and the `sqd run` command uses these commands under the hood.
+
+More info on developing multichain squids is available on the [dedicated documentation page](https://docs.sqd.dev/en/sdk/squid-sdk/evm/guides/multichain).
 
 Dependencies: Node.js v20+, Docker, Git.
 
